@@ -71,22 +71,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         let referenceImage = imageAnchor.referenceImage
-       // updateQueue.async {
 
-            let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
-            let planeNode = SCNNode(geometry: plane)
-            planeNode.opacity = 0.25
-            
-            planeNode.eulerAngles.x = -.pi / 2
-            
-            planeNode.runAction(self.imageHighlightAction)
+        //plane
+        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.opacity = 0.25
+        planeNode.eulerAngles.x = -.pi / 2
+        planeNode.runAction(self.imageHighlightAction)
         
-     let star = SCNScene(named: "art.scnassets/star.dae")!
+        //star
+        let star = SCNScene(named: "art.scnassets/star.dae")!
         let starNode = star.rootNode.childNode(withName: "Cylinder", recursively: true)
         starNode?.scale = SCNVector3(x: 0.02, y: 0.02, z: 0.02)
         starNode?.position = SCNVector3(x:0.0, y: 0.0, z: 0.0)
-       // starNode?.eulerAngles.z = -.pi/6
 
+        //text
         let name = imageAnchor.name
         let text = SCNText(string: name, extrusionDepth: 1)
         let material = SCNMaterial()
@@ -100,13 +99,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         node.addChildNode(starNode!)
         node.addChildNode(planeNode)
         node.addChildNode(textNode)
-        print(textNode.position)
-        print(node.position)
-        //node.addChildNode(cubeNode)
-     //   }
-        
-        
-        //resetTracking()
+
     }
     
     func resetTracking() {
